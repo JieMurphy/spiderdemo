@@ -12,8 +12,10 @@ public class Resour {
     private Integer second;
     private Integer third;
     private Integer forth;
-    private String status;
+    private int status;
+    private String ftype;
     private Timestamp create_time;
+    private Timestamp update_time;
 
     public Resour()
     {
@@ -92,7 +94,7 @@ public class Resour {
         return third;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -100,7 +102,19 @@ public class Resour {
         return create_time;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
+    }
+
+    public Timestamp getUpdate_time() {
+        return update_time;
+    }
+
+    public String getFtype() {
+        return ftype;
+    }
+
+    public void setFtype(String ftype) {
+        this.ftype = ftype;
     }
 }

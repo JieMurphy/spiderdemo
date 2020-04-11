@@ -10,7 +10,9 @@ public class User {
 
     private String password;
 
-    private String power;
+    private int power;
+
+    private String email;
 
     private Timestamp create_time;
 
@@ -25,9 +27,9 @@ public class User {
         this.password = user_password;
     }
 
-    public User(int id,String user_name,String user_password)
+    public User(String user_name,String user_password,String email)
     {
-        this.id = id;
+        this.email = email;
         this.name = user_name;
         this.password = user_password;
     }
@@ -48,11 +50,11 @@ public class User {
         this.password = user_password;
     }
 
-    public String getPower() {
+    public int getPower() {
         return power;
     }
 
-    public void setPower(String power) {
+    public void setPower(int power) {
         this.power = power;
     }
 
@@ -66,5 +68,13 @@ public class User {
 
     public Timestamp getCreate_time() {
         return create_time;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

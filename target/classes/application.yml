@@ -10,6 +10,10 @@ spring:
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
+    tomcat:
+      test-on-borrow: true
+      time-between-eviction-runs-millis: 3600000
+      test-while-idle: true
 
 logging:
   file:

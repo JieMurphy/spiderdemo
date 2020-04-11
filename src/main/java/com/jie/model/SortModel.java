@@ -8,7 +8,10 @@ public class SortModel {
 
     public SortModel()
     {
-
+        forth = null;
+        second = null;
+        third = null;
+        forth = null;
     }
 
     public void setThird(Integer third) {

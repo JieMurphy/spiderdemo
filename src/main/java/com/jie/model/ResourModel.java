@@ -5,6 +5,8 @@ public class ResourModel {
     private String title;
     private String body;
     private String path;
+    private String ftype;
+    private String user_name;
 
     public ResourModel()
     {
@@ -41,5 +43,21 @@ public class ResourModel {
 
     public String getPath() {
         return path;
+    }
+
+    public void setFtype(String ftype) {
+        this.ftype = ftype;
+    }
+
+    public String getFtype() {
+        return ftype;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+
+    public String getUser_name() {
+        return user_name;
     }
 }

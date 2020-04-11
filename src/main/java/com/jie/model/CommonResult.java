@@ -3,7 +3,7 @@ package com.jie.model;
 import com.jie.api.IErrorCode;
 import com.jie.api.ResultCode;
 
-public class CommonResult<T> {
+public class  CommonResult<T> {
     private long code;
     private String message;
     private T data;

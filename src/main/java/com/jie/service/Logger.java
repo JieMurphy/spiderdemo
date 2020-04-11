@@ -19,9 +19,9 @@ public class Logger {
         return log;
     }
 
-    public String logUsers(String event, String messages)
+    public String logUsers(String name, String messages)
     {
-        String log = event + " " + messages;
+        String log = "用户："+ name + " " + messages;
         logger.info(log);
         return log;
     }
