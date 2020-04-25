@@ -22,6 +22,14 @@ public class Resour {
 
     }
 
+    public Resour(String title,int status)
+    {
+        this.title = title;
+        this.status = status;
+        this.body = "";
+        this.ftype = "";
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }

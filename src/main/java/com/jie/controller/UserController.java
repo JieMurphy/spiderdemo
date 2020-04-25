@@ -3,7 +3,6 @@ package com.jie.controller;
 import com.jie.api.UserLoginToken;
 import com.jie.model.CommonResult;
 import com.jie.model.User;
-import com.jie.model.UserModel;
 import com.jie.service.Logger;
 import com.jie.service.TokenService;
 import com.jie.service.UserService;
@@ -42,9 +41,9 @@ public class UserController {
         return CommonResult.success("注册成功");
     }
 
-    @ApiOperation("登录")
+    @ApiOperation(value = "登录",notes = "只需填用户名与密码")
     @PostMapping("/login")
-    public CommonResult login(@RequestBody UserModel user){
+    public CommonResult login(@RequestBody User user){
         logger.logMessage(user.getName() + "",user.getPassword());
         if(userService.judge(user.getName(),user.getPassword()) == false)
         {
@@ -61,7 +60,7 @@ public class UserController {
     @ApiOperation(value = "修改密码",notes = "需要登录，只需填新的密码")
     @UserLoginToken
     @PutMapping({""})
-    public CommonResult updatePWD(@RequestBody UserModel userModel)
+    public CommonResult updatePWD(@RequestBody User userModel)
     {
         User user = userService.findUserById(tokenService.getTokenUserId());
         user.setPassword(userModel.getPassword());

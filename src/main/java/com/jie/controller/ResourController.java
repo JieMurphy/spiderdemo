@@ -5,10 +5,8 @@ import com.jie.model.*;
 import com.jie.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -109,7 +107,7 @@ public class ResourController {
         return CommonResult.success(resour.getTitle() + "待删除");
     }
 
-    @ApiOperation(value = "上传",notes = "需要用户登录")
+    @ApiOperation(value = "上传",notes = "需要用户登录;需填写title、body、path、四级分类")
     @UserLoginToken
     @PostMapping("")
     public CommonResult upload(@RequestBody Resour resource)
@@ -117,7 +115,7 @@ public class ResourController {
         User user = userService.findUserById(tokenService.getTokenUserId());
         resource.setUser_id(user.getId());
         logger.logMessage("上传：",user.getName() + resource.getTitle());
-        if(resourService.saveResour(resource) == false)
+        if(resourService.updateTitleEtc(resource) == false)
         {
             return CommonResult.failed("上传失败");
         }

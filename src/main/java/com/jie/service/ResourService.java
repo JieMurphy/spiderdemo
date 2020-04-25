@@ -20,6 +20,9 @@ public class ResourService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private FileService fileService;
+
     public Resour findResourById(int id)
     {
         return resourMapper.findResourById(id);
@@ -55,11 +58,8 @@ public class ResourService {
 
     public boolean saveResour(Resour resour)
     {
-        if(resour.getTitle() == null || resour.getFirst() == null || resour.getSecond() == null || resour.getThird() == null || resour.getForth() == null)
-        {
-            return false;
-        }
-        resour.setStatus(待审核);
+        resour.setTitle("*");
+        resour.setStatus(待删除);
         resourMapper.saveResour(resour);
         return true;
     }
@@ -75,6 +75,7 @@ public class ResourService {
         {
             return false;
         }
+        fileService.delete(resour.getPath());
         resourMapper.deleteResour(resour.getId());
         return true;
     }
@@ -100,6 +101,27 @@ public class ResourService {
             return false;
         }
         resour.setStatus(status);
+        resourMapper.updateStatusById(resour);
+        return true;
+    }
+
+    public void updatePathEtc(Resour resour)
+    {
+        resourMapper.updatePathBodyFtype(resour);
+    }
+
+    public boolean updateTitleEtc(Resour resour)
+    {
+        Resour resour1 = resourMapper.findResourByPath(resour.getPath());
+        if(resour1.getStatus() != 待删除)
+        {
+            return false;
+        }
+        resour.setId(resour1.getId());
+        resour.setBody("简介：" + resour.getBody() + " " + resour1.getBody());
+        resourMapper.updateTitleUserEtc(resour);
+        resourMapper.updateClassifies(resour);
+        resour.setStatus(待审核);
         resourMapper.updateStatusById(resour);
         return true;
     }

@@ -2,16 +2,16 @@ package com.jie.dao;
 
 import com.jie.model.Resour;
 import com.jie.model.SortModel;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 public interface ResourMapper {
     @Select("select * from resources where id = #{id}")
     Resour findResourById(int id);
+
+    @Select("select * from resources where path = #{path}")
+    Resour findResourByPath(String path);
 
     @Select("select * from resources")
     List<Resour> findAll();
@@ -47,8 +47,18 @@ public interface ResourMapper {
     @Update("update resources set status = #{status} where id = #{id}")
     void updateStatusById(Resour resour);
 
-    @Insert("insert into resources (title, body, user_id, path, first, second, third, forth) VALUES (#{title},#{body},#{user_id},#{path},#{first},#{second},#{third},#{forth})")
-    void saveResour(Resour resour);
+    @Update("update resources set path = #{path} , body = #{body} , ftype = #{ftype} where id = #{id}")
+    void updatePathBodyFtype(Resour resour);
+
+    @Update("update resources set title = #{title} , body = #{body} , user_id = #{user_id} where id = #{id}")
+    void updateTitleUserEtc(Resour resour);
+
+    @Update("update resources set first = #{first} , second = #{second} , third = #{third} , forth = #{forth} where id = #{id}")
+    void updateClassifies(Resour resour);
+
+    @Insert("insert into resources (title,status) VALUES (#{title},#{status})")
+    @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")
+    Integer saveResour(Resour resour);
 
     @Delete("delete from resources where id = #{id}")
     void deleteResour(int id);
